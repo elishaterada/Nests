@@ -158,28 +158,40 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
   <script>
-    var tmax_opts = {
-      repeat: 0
-    };
+    $(function() {
+      var tmax_opts = {
+        delay: 0,
+        yoyo: true
+      };
 
-    var tmax_tl           = new TimelineMax(tmax_opts),
-        polylion_shapes   = $('.logo > g polygon'),
-        polylion_stagger  = 0.02,
-        polylion_duration = 2;
+      var tmax_tl           = new TimelineMax(tmax_opts),
+          logo_shapes   = $('.logo > g polygon'),
+          logo_stagger  = 0.02,
+          logo_duration = 2;
 
-    var polylion_staggerFrom = {
-      scale: 0,
-      opacity: 0,
-      transformOrigin: 'center center'
-    };
+      var logo_staggerFrom = {
+        scale: 0,
+        opacity: 0,
+        transformOrigin: 'center center'
+      };
 
-    var polylion_staggerTo = {
-      opacity: 1,
-      scale: 1,
-      ease: Elastic.easeInOut
-    };
+      var logo_staggerTo = {
+        opacity: 1,
+        scale: 1,
+        ease: Elastic.easeInOut
+      };
 
-    tmax_tl.staggerFromTo(polylion_shapes, polylion_duration, polylion_staggerFrom, polylion_staggerTo, polylion_stagger, 0);
+      tmax_tl.staggerFromTo(logo_shapes, logo_duration, logo_staggerFrom, logo_staggerTo, logo_stagger, 0);
+
+      tmax_tl.eventCallback('onReverseComplete', function(){
+        tmax_tl.restart();
+      });
+
+      $('.logo').on('mouseover', function () {
+        tmax_tl.reverse();
+      });
+
+    });
   </script>
 </body>
 </html>
