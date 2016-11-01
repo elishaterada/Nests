@@ -1,5 +1,5 @@
 <!doctype html>
-<html ⚡>
+<html class="no-js">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -12,8 +12,9 @@
   <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
   <link rel="manifest" href="/manifest.json">
   <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="amphtml" href="http://www.nests.io/amp.html">
   <meta name="theme-color" content="#ffffff">
-  <style amp-custom>
+  <style>
     html {
       background-color: #f9f9f9;
       color: #424242;
@@ -86,9 +87,37 @@
     .main article a:hover {
       color: #2196F3;
     }
+
+    .logo polygon {
+      opacity: 0;
+    }
+
+    .no-js .logo {
+      opacity: 1;
+    }
+
+    .logo {
+      height: 300px;
+    }
+
+    .no-cssanimations .logo > polygon {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    .st0{fill:#79E8F8;}
+    .st1{fill:#DEF9FD;}
+    .st2{fill:#84EDFB;}
+    .st3{fill:#D0F8FE;}
+    .st4{fill:#4CE0F5;}
+    .st5{fill:#BEF2FA;}
+    .st6{fill:#5BE7FA;}
+    .st7{fill:#A2F1FC;}
+    .st8{fill:#1FD8F3;}
+    .st9{fill:#9DECF8;}
+    .st10{fill:#32E0F9;}
+    .st11{fill:#73EAFB;}
   </style>
-  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
-  <script async src="https://cdn.ampproject.org/v0.js"></script>
 </head>
 <body>
   <div class="main">
@@ -96,7 +125,23 @@
     <article>
       <header>
         <h1>nests.io</h1>
-        <amp-img width="300" height="250" alt="Logo" src="nests.svg"></amp-img>
+        <svg class="logo" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 600 600" style="enable-background:new 0 0 600 600;" xml:space="preserve">
+        <g>
+          <polygon class="st0" points="342.1,0 319.6,294.9 245.7,170.6"/>
+          <polygon class="st1" points="342.1,0 245.7,170.6 159.8,177"/>
+          <polygon class="st2" points="245.7,170.6 319.6,294.9 3.3,600 186.8,275.1"/>
+          <polygon class="st3" points="245.7,170.6 186.8,275.1 3.3,600 159.8,177"/>
+          <polygon class="st4" points="485.8,108.1 387.8,387.2 348.6,248"/>
+          <polygon class="st5" points="485.8,108.1 348.6,248 264,231.9"/>
+          <polygon class="st6" points="348.6,248 387.8,387.2 3.3,600 264.6,333.6"/>
+          <polygon class="st7" points="348.6,248 264.6,333.6 3.3,600 264,231.9"/>
+          <polygon class="st8" points="596.7,249.8 429.8,493.9 427.9,349.4"/>
+          <polygon class="st9" points="596.7,249.8 427.9,349.4 427.9,349.4 350.4,311.9"/>
+          <polygon class="st10" points="427.9,349.4 429.8,493.9 3.3,600 324.6,410.3 427.9,349.4"/>
+          <polygon class="st11" points="427.9,349.4 324.6,410.3 3.3,600 350.4,311.9"/>
+        </g>
+        </svg>
+
       </header>
       <section>
         <h3>Projects</h3>
@@ -109,5 +154,32 @@
     </article>
 
   </div> <!-- #main -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
+  <script>
+    var tmax_opts = {
+      repeat: 0
+    };
+
+    var tmax_tl           = new TimelineMax(tmax_opts),
+        polylion_shapes   = $('.logo > g polygon'),
+        polylion_stagger  = 0.02,
+        polylion_duration = 2;
+
+    var polylion_staggerFrom = {
+      scale: 0,
+      opacity: 0,
+      transformOrigin: 'center center'
+    };
+
+    var polylion_staggerTo = {
+      opacity: 1,
+      scale: 1,
+      ease: Elastic.easeInOut
+    };
+
+    tmax_tl.staggerFromTo(polylion_shapes, polylion_duration, polylion_staggerFrom, polylion_staggerTo, polylion_stagger, 0);
+  </script>
 </body>
 </html>
